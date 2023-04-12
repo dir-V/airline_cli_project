@@ -85,26 +85,39 @@ public class Airline {
 
 //    Adding a passenger to a flight
     public static void bookFlight() {
+        boolean cancel = true;
         Passenger passenger = null; // Calling the Passenger class
         while (passenger == null) { // Using a while loop to keep asking for user input. Ends once a valid passenger ID is entered.
-            System.out.println("Enter the passenger ID: ");
+            System.out.println("Enter the passenger ID:\nPress 0 to cancel. ");
             int passengerID = scanner.nextInt();
             passenger = findPassenger(passengerID);
+            if (passengerID == 0){
+                System.out.println("Cancelling operation.");
+                cancel = false;
+                break;
+            }
             if (passenger == null) {
                 System.out.println("Passenger not found");
             }
         }
         Flight flight = null;
-        while (flight == null) { // Using a while loop to keep asking for a flight ID. Ends once a valid flight ID is entered.
-            System.out.println("Enter flight ID: ");
+        while (flight == null && cancel ) {// Using a while loop to keep asking for a flight ID. Ends once a valid flight ID is entered.
+            System.out.println("Enter flight ID:\n Enter 0 to cancel. ");
             int flightID = scanner.nextInt();
             flight = findFlight(flightID);
+            if (flightID == 0) {
+                System.out.println("Cancelling operation. Returning to main menu.");
+                cancel = false;
+                break;
+            }
             if (flight == null) { // Error message if in correct flight ID is entered.
                 System.out.println("Flight not found.");
             }
         }
+        if (cancel){
         flight.addPassenger(passenger); // Once a valid flight and passenger ID are inputted the passenger is added to the flight.
         System.out.println("Booking confirmed");
+    }
     }
 
 
@@ -132,11 +145,25 @@ public class Airline {
 
 //    Cancelling a flight
     public static void cancelFlight(){
-        System.out.println("Enter flight ID: ");
-        int flightID = scanner.nextInt();
-        Flight flight = findFlight(flightID);
-        flights.remove(flight); // Removes a flight from the "flights" arraylist using flightID.
-        System.out.println("Flight successfully cancelled.");
+        boolean cancel = true;
+        Flight flight = null;
+            while (flight == null){
+            System.out.println("Enter flight ID: \nEnter 0 to cancel");
+            int flightID = scanner.nextInt();
+             flight = findFlight(flightID);
+             if (flightID == 0){
+                    System.out.println("Operation cancelled. Returning to main console.");
+                    cancel = false;
+                    break;
+                }
+             if (flight == null){
+                    System.out.println("Please enter a valid flight ID: ");
+                }
+        }
+            if (cancel) {
+                flights.remove(flight); // Removes a flight from the "flights" arraylist using flightID.
+                System.out.println("Flight successfully cancelled.");
+            }
     }
 
 
