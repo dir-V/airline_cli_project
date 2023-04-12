@@ -61,7 +61,7 @@ public class Airline {
         System.out.println("New flight added.");
     }
 
-
+// Display flights method
     public static void displayFlights(){
         for (Flight flight : flights){
             System.out.println(flight);
