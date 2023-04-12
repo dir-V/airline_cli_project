@@ -3,19 +3,19 @@ import java.util.ArrayList;
 public class Flight {
     private int iD;
     private String destination;
-    private ArrayList<Passenger>passenger;
+    private ArrayList<Passenger>passengers;
 
-    public Flight(int iD, String destination, ArrayList<Passenger> passenger){
+    public Flight( int iD, String destination, ArrayList<Passenger> passengers){
         this.iD = iD;
         this.destination = destination;
-        this.passenger = new ArrayList<>();
+        this.passengers = new ArrayList<>();
     }
 
-    public int getiD() {
+    public int getId() {
         return iD;
     }
 
-    public void setiD(int iD) {
+    public void setId(int iD) {
         this.iD = iD;
     }
 
@@ -28,14 +28,14 @@ public class Flight {
     }
 
     public ArrayList<Passenger> getPassenger() {
-        return passenger;
+        return passengers;
     }
 
-    public void setPassenger(ArrayList<Passenger> passenger) {
-        this.passenger = passenger;
+    public void setPassenger(ArrayList<Passenger> passengers) {
+        this.passengers = passengers;
     }
 //    Method to add new passengers
     public void addPassenger(Passenger passenger){
-        passenger.add(passenger);
+        passengers.add(passenger);
     }
 }
