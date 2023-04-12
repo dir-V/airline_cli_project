@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Airline {
+//    Declaring ArrayLists
     private static ArrayList<Flight> flights = new ArrayList<>();
     private static ArrayList<Passenger> passengers = new ArrayList<>();
 
@@ -11,7 +12,7 @@ public class Airline {
 
     public static void main(String[] args) {
             boolean running = true;
-            while (running == true) {
+            while (running == true) { // Interface will continue running infinitely until running becomes false.
                 System.out.println("Enter a command:");
                 System.out.println("1. Add a new flight");
                 System.out.println("2. Display all available flights");
@@ -44,7 +45,7 @@ public class Airline {
                         running = false;
                         break;
                     default:
-                        System.out.println("Invalid command");
+                        System.out.println("Invalid command"); // Error message if an invalid input is entered.
                 }
             }
         }
@@ -68,6 +69,7 @@ public class Airline {
         }
     }
 
+//    Add Passenger to Database
     public static void addPassenger(){
         System.out.println("Enter Passenger name: ");
         String name = scanner.nextLine();
@@ -76,13 +78,15 @@ public class Airline {
         System.out.println("Enter passenger ID: ");
         int id = scanner.nextInt();
 
-        passengers.add(new Passenger(name, info, id));
+        passengers.add(new Passenger(name, info, id)); // Adds new passenger to the "passengers" arraylist
         System.out.println("Passenger added.");
 
     }
+
+//    Adding a passenger to a flight
     public static void bookFlight() {
-        Passenger passenger = null;
-        while (passenger == null) {
+        Passenger passenger = null; // Calling the Passenger class
+        while (passenger == null) { // Using a while loop to keep asking for user input. Ends once a valid passenger ID is entered.
             System.out.println("Enter the passenger ID: ");
             int passengerID = scanner.nextInt();
             passenger = findPassenger(passengerID);
@@ -91,23 +95,23 @@ public class Airline {
             }
         }
         Flight flight = null;
-        while (flight == null) {
+        while (flight == null) { // Using a while loop to keep asking for a flight ID. Ends once a valid flight ID is entered.
             System.out.println("Enter flight ID: ");
             int flightID = scanner.nextInt();
             flight = findFlight(flightID);
-            if (flight == null) {
+            if (flight == null) { // Error message if in correct flight ID is entered.
                 System.out.println("Flight not found.");
             }
         }
-        flight.addPassenger(passenger);
+        flight.addPassenger(passenger); // Once a valid flight and passenger ID are inputted the passenger is added to the flight.
         System.out.println("Booking confirmed");
     }
 
 
 
-
+// Finding a passenger by using their ID
     public static Passenger findPassenger(int id){
-        for (Passenger passenger : passengers){
+        for (Passenger passenger : passengers){ // Iterates through every passenger in "passengers" array list until the ID is found. Using a HashMap would be quicker.
             if (passenger.getId() == id){
                 return passenger;
             }
@@ -116,7 +120,8 @@ public class Airline {
 
     }
 
-    public static Flight findFlight(int id) {
+//    Finding a flight using only ID
+    public static Flight findFlight(int id) { // Same method as findPassenger() but just for "flights" arraylist.
         for (Flight flight : flights) {
             if (flight.getId() == id) {
                 return flight;
@@ -125,11 +130,12 @@ public class Airline {
         return null;
     }
 
+//    Cancelling a flight
     public static void cancelFlight(){
         System.out.println("Enter flight ID: ");
         int flightID = scanner.nextInt();
         Flight flight = findFlight(flightID);
-        flights.remove(flight);
+        flights.remove(flight); // Removes a flight from the "flights" arraylist using flightID.
         System.out.println("Flight successfully cancelled.");
     }
 
