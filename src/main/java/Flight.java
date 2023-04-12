@@ -5,7 +5,7 @@ public class Flight {
     private String destination;
     private ArrayList<Passenger>passengers;
 
-    public Flight( int iD, String destination, ArrayList<Passenger> passengers){
+    public Flight( int iD, String destination){
         this.iD = iD;
         this.destination = destination;
         this.passengers = new ArrayList<>();
