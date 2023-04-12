@@ -1,22 +1,22 @@
 import java.util.ArrayList;
 
 public class Flight {
-    private int iD;
+    private int flightID;
     private String destination;
     private ArrayList<Passenger>passengers;
 
     public Flight( int iD, String destination){
-        this.iD = iD;
+        this.flightID = iD;
         this.destination = destination;
         this.passengers = new ArrayList<>();
     }
 
     public int getId() {
-        return iD;
+        return flightID;
     }
 
     public void setId(int iD) {
-        this.iD = iD;
+        this.flightID = iD;
     }
 
     public String getDestination() {
